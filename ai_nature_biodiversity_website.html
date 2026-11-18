@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A student project exploring how artificial intelligence affects nature and biodiversity.">
+<title>AI & Nature | A Digital Future for Biodiversity</title>
+<style>
+:root{--forest:#092c24;--deep:#061d19;--green:#b9ef67;--mint:#e9f6e9;--ink:#142b25;--muted:#60736c;--white:#fff;--line:#dce9df;--gold:#ffd56b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:#f5f8f4;color:var(--ink);line-height:1.65}
+header{position:sticky;top:0;z-index:20;background:rgba(6,29,25,.96);backdrop-filter:blur(12px);color:white;box-shadow:0 5px 25px #001a1430}
+.navwrap{max-width:1180px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:white;font-weight:800;font-size:1.1rem;white-space:nowrap}.brand-mark{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#a8e85c,#16a47a);font-size:1.5rem}
+nav{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}nav button{border:0;background:transparent;color:#e9f5ed;padding:9px 12px;border-radius:30px;font:600 .88rem inherit;cursor:pointer}nav button:hover,nav button.active{background:#1b5a43;color:#d4ff8a}
+.menu{display:none;border:1px solid #527466;background:#12392f;color:white;border-radius:10px;padding:8px 12px;font-size:1.2rem}
+main{max-width:1180px;margin:auto;padding:28px 22px 60px}.page{display:none;animation:fade .35s ease}.page.active{display:block}@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hero{min-height:390px;border-radius:28px;padding:clamp(28px,5vw,58px);color:white;overflow:hidden;position:relative;background:radial-gradient(circle at 78% 30%,#1d8262 0,transparent 28%),linear-gradient(115deg,#06251e,#0b4837 65%,#123e2e);display:flex;align-items:center}
+.hero:after{content:"🌳";position:absolute;right:7%;bottom:0;font-size:clamp(9rem,24vw,18rem);opacity:.25;filter:drop-shadow(0 10px 15px #001)}
+.hero-content{position:relative;z-index:1;max-width:650px}.eyebrow{text-transform:uppercase;letter-spacing:.16em;color:#c5f58c;font-size:.78rem;font-weight:800}.hero h1{font-size:clamp(2.4rem,6vw,4.6rem);line-height:1.05;margin:12px 0 15px;letter-spacing:-.04em}.hero h1 span{color:var(--green)}.hero p{font-size:1.12rem;max-width:590px;color:#e4f1e9}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}.btn{border:0;border-radius:30px;padding:12px 20px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block}.btn.primary{background:var(--green);color:#10251b}.btn.ghost{border:1px solid #9bc5ad;color:white;background:#ffffff10}.btn:hover{transform:translateY(-2px);filter:brightness(1.04)}
+.hero-art{position:absolute;right:5%;top:15%;width:300px;height:250px;display:grid;place-items:center;z-index:0}.earth{width:210px;height:210px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#b3f4a2,#219b7a 45%,#07516b 75%);box-shadow:0 0 0 12px #ffffff10,0 0 60px #6affd080;font-size:5rem}.orbit{position:absolute;inset:0;border:1px solid #8beecb88;border-radius:50%;transform:rotate(-25deg) scaleY(.55)}.orbit.two{transform:rotate(45deg) scaleY(.72)}.floating{position:absolute;background:#e9ffdf;color:#14523a;border-radius:50%;width:48px;height:48px;display:grid;place-items:center;font-size:1.4rem;box-shadow:0 5px 20px #0018}.f1{top:8px;left:25px}.f2{right:0;top:55px}.f3{bottom:0;left:70px}
+.section-head{margin:42px 0 18px}.section-head .eyebrow{color:#36875b}.section-head h2{font-size:clamp(1.8rem,4vw,2.5rem);line-height:1.15;margin:6px 0;color:#123a2d}.section-head p{color:var(--muted);max-width:720px;margin:8px 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:white;border:1px solid var(--line);border-radius:20px;padding:23px;box-shadow:0 8px 24px #143b2410}.card .icon{font-size:2rem}.card h3{margin:8px 0 6px;color:#164532}.card p{margin:0;color:#5c7067}.card.green{background:linear-gradient(145deg,#eff9ed,#fff)}.card.red{background:linear-gradient(145deg,#fff1ed,#fff)}.card.blue{background:linear-gradient(145deg,#edf5ff,#fff)}
+.callout{margin:25px 0;padding:22px 25px;border-left:5px solid #76b94d;background:#eaf5e7;border-radius:0 16px 16px 0;color:#244b35}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{background:white;border:1px solid var(--line);border-radius:20px;padding:24px}.panel h3{margin-top:0;color:#174833}.list{padding-left:20px}.list li{padding:5px 0}.tag{display:inline-block;background:#e8f4e6;color:#28613d;border-radius:20px;padding:4px 10px;font-size:.78rem;font-weight:800;margin:3px}
+.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}.stat{background:#0d3c2e;color:white;border-radius:17px;padding:18px;text-align:center}.stat strong{display:block;font-size:1.6rem;color:#c4f17c}.stat span{font-size:.86rem;color:#e0eee5}
+.steps{counter-reset:step;display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.step{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}.step:before{counter-increment:step;content:counter(step);display:grid;place-items:center;width:35px;height:35px;border-radius:50%;background:#dff2cf;color:#245b36;font-weight:900;margin-bottom:10px}
+details{background:white;border:1px solid var(--line);border-radius:14px;padding:15px 18px;margin:10px 0}summary{font-weight:800;cursor:pointer;color:#174833}details p{color:#5b6e65;margin-bottom:0}
+.quiz{background:#092c24;color:white;border-radius:22px;padding:25px;margin-top:25px}.quiz h3{margin-top:0;color:#c6f28a}.quiz button.option{display:block;width:100%;text-align:left;margin:9px 0;background:#164839;color:white;border:1px solid #47745e;border-radius:12px;padding:12px;cursor:pointer}.quiz button.option:hover{background:#23644a}.feedback{min-height:28px;color:#d4f6a8;font-weight:700}
+footer{background:#061d19;color:#e7f1e8;padding:25px 22px;text-align:center}footer strong{color:#c4f17c}.small{font-size:.88rem;color:#6b7c73}.page-title{background:linear-gradient(110deg,#0b392c,#1b6849);border-radius:22px;color:white;padding:30px;margin-bottom:25px}.page-title h1{margin:4px 0;font-size:clamp(2rem,5vw,3rem)}.page-title p{margin:0;color:#e1f1e5}
+@media(max-width:850px){.hero-art{right:-3%;opacity:.55}.hero-content{max-width:75%}.grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:650px){.navwrap{flex-wrap:wrap}.menu{display:block}nav{display:none;width:100%;justify-content:flex-start}nav.open{display:flex}nav button{font-size:.82rem}.hero{min-height:440px}.hero-content{max-width:100%}.hero-art{right:-65px;top:auto;bottom:-75px;transform:scale(.7);opacity:.35}.grid,.split,.statrow,.steps{grid-template-columns:1fr}.section-head{margin-top:30px}main{padding:18px 14px 40px}}
+</style>
+</head>
+<body>
+<header><div class="navwrap">
+<a class="brand" href="#" onclick="showPage('home');return false"><span class="brand-mark">🌱</span><span>AI & NATURE<br><small style="font-weight:500;color:#b8d7c3">A Digital Future for Biodiversity</small></span></a>
+<button class="menu" aria-label="Toggle navigation" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
+<nav id="nav">
+<button class="active" data-page="home" onclick="showPage('home')">Home</button>
+<button data-page="positive" onclick="showPage('positive')">Positive Impacts</button>
+<button data-page="negative" onclick="showPage('negative')">Negative Impacts</button>
+<button data-page="wildlife" onclick="showPage('wildlife')">Wildlife Protection</button>
+<button data-page="solutions" onclick="showPage('solutions')">Future Solutions</button>
+<button data-page="conclusion" onclick="showPage('conclusion')">Conclusion</button>
+</nav></div></header>
+<main>
+<section id="home" class="page active">
+<div class="hero"><div class="hero-content"><div class="eyebrow">Technology • Ecology • Our Future</div><h1>Impact of AI on <span>Nature & Biodiversity</span></h1><p>Can smarter technology help protect the living world? Explore the opportunities, challenges and choices that will shape a greener future.</p><div class="actions"><button class="btn primary" onclick="showPage('positive')">Explore the topic →</button><button class="btn ghost" onclick="showPage('wildlife')">Discover wildlife projects</button></div></div>
+<div class="hero-art" aria-hidden="true"><div class="earth">🌍</div><div class="orbit"></div><div class="orbit two"></div><span class="floating f1">🌿</span><span class="floating f2">🐾</span><span class="floating f3">💧</span></div></div>
+<div class="section-head"><div class="eyebrow">Welcome</div><h2>Technology meets the natural world</h2><p>Artificial Intelligence (AI) allows computers to find patterns, make predictions and assist people with complex tasks. When used carefully, it can support conservation—but it also has an environmental footprint.</p></div>
+<div class="grid">
+<div class="card green"><div class="icon">🌳</div><h3>Protect ecosystems</h3><p>AI can help researchers monitor forests, map habitats and identify changes in ecosystems.</p></div>
+<div class="card blue"><div class="icon">🦉</div><h3>Understand wildlife</h3><p>Computer vision and sound analysis can help identify animals from camera-trap photos and recordings.</p></div>
+<div class="card red"><div class="icon">⚡</div><h3>Use energy wisely</h3><p>AI systems need computers, electricity and cooling. Their impacts depend on how they are designed and powered.</p></div>
+</div>
+<div class="callout"><strong>Big idea:</strong> AI is a tool, not a solution by itself. Human knowledge, local communities and strong conservation policies remain essential.</div>
+<div class="section-head"><div class="eyebrow">Explore the website</div><h2>What will you discover?</h2></div>
+<div class="grid">
+<div class="card"><span class="tag">01 • Benefits</span><h3>Positive impacts</h3><p>See how AI can support habitat mapping, pollution monitoring and conservation research.</p><button class="btn primary" onclick="showPage('positive')">Read more →</button></div>
+<div class="card"><span class="tag">02 • Challenges</span><h3>Negative impacts</h3><p>Learn about energy use, water use, electronic waste and risks from poor data.</p><button class="btn primary" onclick="showPage('negative')">Read more →</button></div>
+<div class="card"><span class="tag">03 • Action</span><h3>Future solutions</h3><p>Explore practical ways to make technology more sustainable.</p><button class="btn primary" onclick="showPage('solutions')">Read more →</button></div>
+</div>
+</section>
+<section id="positive" class="page">
+<div class="page-title"><div class="eyebrow">The opportunities</div><h1>Positive Impacts of AI</h1><p>AI can help people collect and understand environmental information faster.</p></div>
+<div class="grid">
+<div class="card green"><div class="icon">🛰️</div><h3>Forest monitoring</h3><p>AI can analyse satellite images to help detect tree-cover changes and identify areas that may need attention.</p></div>
+<div class="card green"><div class="icon">🐘</div><h3>Animal conservation</h3><p>Image-recognition tools can help identify species in camera-trap photographs and support population studies.</p></div>
+<div class="card green"><div class="icon">🌊</div><h3>Ocean protection</h3><p>AI can help researchers examine underwater recordings and images to study marine life and changing habitats.</p></div>
+<div class="card green"><div class="icon">💧</div><h3>Pollution detection</h3><p>AI can analyse sensor readings to help track air and water quality and spot unusual patterns.</p></div>
+<div class="card green"><div class="icon">🔥</div><h3>Early warnings</h3><p>When combined with reliable data, AI models can help identify conditions linked to risks such as wildfires.</p></div>
+<div class="card green"><div class="icon">🌱</div><h3>Habitat restoration</h3><p>Maps and predictions can help conservation teams plan where restoration work may be most useful.</p></div>
+</div>
+<div class="callout"><strong>Remember:</strong> AI findings need to be checked by scientists and local experts. A prediction is not automatically proof.</div>
+</section>
+<section id="negative" class="page">
+<div class="page-title"><div class="eyebrow">The challenges</div><h1>Negative Impacts of AI</h1><p>Digital technology can affect the environment through the resources it uses and the way it is applied.</p></div>
+<div class="grid">
+<div class="card red"><div class="icon">⚡</div><h3>Electricity consumption</h3><p>Training and running large AI systems uses electricity. If that power comes from fossil fuels, it can add greenhouse-gas emissions.</p></div>
+<div class="card red"><div class="icon">💧</div><h3>Water for cooling</h3><p>Some data centres use water in cooling systems. Water demand can put pressure on local supplies, depending on location and design.</p></div>
+<div class="card red"><div class="icon">🖥️</div><h3>Electronic waste</h3><p>Servers and other computing equipment eventually need replacing. Poor disposal can waste valuable materials and cause pollution.</p></div>
+<div class="card red"><div class="icon">⛏️</div><h3>Demand for minerals</h3><p>Electronic devices rely on mined materials. Mining can damage habitats if it is not responsibly managed.</p></div>
+<div class="card red"><div class="icon">📊</div><h3>Biased or incomplete data</h3><p>If some species or regions are missing from datasets, AI results may overlook them or lead to unfair decisions.</p></div>
+<div class="card red"><div class="icon">🚧</div><h3>Misuse of technology</h3><p>Technology can be used in ways that disturb wildlife or expose sensitive locations. Conservation data must be handled carefully.</p></div>
+</div>
+<div class="callout"><strong>Key point:</strong> The environmental cost of AI is not the same for every system. It depends on its size, energy source, cooling method, hardware and purpose.</div>
+</section>
+<section id="wildlife" class="page">
+<div class="page-title"><div class="eyebrow">Conservation in action</div><h1>AI in Wildlife Protection</h1><p>AI can help conservationists turn images, sounds and sensor data into useful information.</p></div>
+<div class="split">
+<div class="panel"><h3>📷 Camera-trap identification</h3><p>Motion-triggered cameras capture animals in the wild. AI tools can help sort large photo collections and suggest which species may appear. Researchers verify the results.</p><span class="tag">Species identification</span><span class="tag">Population research</span></div>
+<div class="panel"><h3>🎧 Listening to nature</h3><p>Audio-recognition systems can help detect bird calls, frog calls or other wildlife sounds. This can help researchers study where species are present.</p><span class="tag">Bioacoustics</span><span class="tag">Biodiversity surveys</span></div>
+<div class="panel"><h3>🛰️ Watching habitats</h3><p>Satellite and drone images can be analysed to track changes in forests, wetlands and other habitats over time.</p><span class="tag">Habitat mapping</span><span class="tag">Land-use change</span></div>
+<div class="panel"><h3>🚨 Supporting rapid response</h3><p>AI-assisted analysis can help teams review alerts and prioritise areas for investigation. People on the ground still make and verify decisions.</p><span class="tag">Monitoring</span><span class="tag">Decision support</span></div>
+</div>
+<div class="section-head"><div class="eyebrow">How it works</div><h2>From data to conservation action</h2></div>
+<div class="steps"><div class="step"><h3>Collect information</h3><p>Gather camera images, sound recordings, satellite pictures or sensor readings responsibly.</p></div><div class="step"><h3>Analyse patterns</h3><p>AI helps sort information, recognise patterns or flag possible changes for review.</p></div><div class="step"><h3>Verify and act</h3><p>Experts check the results and use them alongside field knowledge to guide conservation work.</p></div></div>
+<div class="callout"><strong>Protect sensitive data:</strong> Exact locations of rare or threatened species should not be shared publicly if doing so could put them at risk.</div>
+</section>
+<section id="solutions" class="page">
+<div class="page-title"><div class="eyebrow">A responsible path forward</div><h1>Future Solutions</h1><p>We can gain the benefits of AI while reducing harm to the planet.</p></div>
+<div class="grid">
+<div class="card green"><div class="icon">☀️</div><h3>Choose cleaner energy</h3><p>Power data centres with low-carbon electricity and improve energy efficiency.</p></div>
+<div class="card green"><div class="icon">♻️</div><h3>Reuse and recycle devices</h3><p>Extend hardware life, repair equipment and recycle electronic waste responsibly.</p></div>
+<div class="card green"><div class="icon">🚰</div><h3>Use water carefully</h3><p>Improve cooling efficiency and consider local water availability when choosing data-centre locations.</p></div>
+<div class="card green"><div class="icon">🔎</div><h3>Make AI transparent</h3><p>Measure and report energy, water and environmental impacts so they can be improved.</p></div>
+<div class="card green"><div class="icon">🤝</div><h3>Include local communities</h3><p>Work with Indigenous peoples, local residents and conservation experts who understand the ecosystem.</p></div>
+<div class="card green"><div class="icon">🧑‍🔬</div><h3>Keep humans involved</h3><p>Use AI as support for scientific judgement—not as a replacement for field research or public responsibility.</p></div>
+</div>
+<div class="section-head"><div class="eyebrow">Small actions matter</div><h2>What can students do?</h2></div>
+<div class="panel"><ul class="list"><li>Use digital tools thoughtfully and avoid unnecessary computing.</li><li>Keep devices for longer, repair them where possible and use recognised e-waste collection points.</li><li>Learn about local plants, animals and habitats.</li><li>Share verified environmental information rather than unconfirmed claims.</li><li>Support school and community activities such as habitat clean-ups and native-plant projects.</li></ul></div>
+</section>
+<section id="conclusion" class="page">
+<div class="page-title"><div class="eyebrow">Our shared responsibility</div><h1>Conclusion</h1><p>Building a future where technology and nature can thrive together.</p></div>
+<div class="panel" style="padding:clamp(24px,5vw,48px)">
+<div style="font-size:3rem">🌍🌿</div><h2 style="color:#164833;font-size:2rem;line-height:1.2">AI can be an ally for biodiversity—when we use it wisely.</h2>
+<p>Artificial Intelligence offers useful ways to monitor wildlife, understand ecosystems and support conservation decisions. At the same time, AI systems need energy, water and electronic equipment, and they can create risks when used carelessly.</p>
+<p>The best future is not one where technology replaces nature or human knowledge. It is one where responsible innovation supports scientists, communities and conservation efforts.</p>
+<div class="callout"><strong>Our message:</strong> Use technology thoughtfully. Protect habitats. Respect every form of life. A healthier planet is a responsibility we all share.</div>
+<h3 style="color:#28613d">Learn • Protect • Preserve</h3>
+</div>
+<div class="section-head"><div class="eyebrow">Test what you learned</div><h2>Quick knowledge check</h2><p>Choose an answer to see how much you remember.</p></div>
+<div class="quiz"><h3>Question: Which is a helpful use of AI for biodiversity?</h3><button class="option" onclick="answer(false)">A. Increasing electronic waste</button><button class="option" onclick="answer(true)">B. Helping identify animals in camera-trap photos</button><button class="option" onclick="answer(false)">C. Replacing all conservation scientists</button><div id="feedback" class="feedback" aria-live="polite"></div></div>
+</section>
+<section id="sources" class="page">
+<div class="page-title"><div class="eyebrow">Further reading</div><h1>Sources & References</h1><p>Explore trusted organisations to learn more about biodiversity, conservation and sustainable technology.</p></div>
+<div class="panel"><ul class="list">
+<li><a href="https://www.cbd.int/" target="_blank" rel="noopener">Convention on Biological Diversity (CBD)</a> — global biodiversity goals and information.</li>
+<li><a href="https://www.iucn.org/" target="_blank" rel="noopener">International Union for Conservation of Nature (IUCN)</a> — conservation science and threatened species information.</li>
+<li><a href="https://www.unep.org/" target="_blank" rel="noopener">United Nations Environment Programme (UNEP)</a> — environmental issues and solutions.</li>
+<li><a href="https://www.iea.org/" target="_blank" rel="noopener">International Energy Agency (IEA)</a> — energy systems and data-centre energy topics.</li>
+<li><a href="https://www.worldwildlife.org/" target="_blank" rel="noopener">World Wide Fund for Nature (WWF)</a> — wildlife and habitat conservation.</li>
+</ul><p class="small">This is an educational school project. The examples explain potential uses and risks; actual outcomes depend on the technology, location and how it is managed.</p></div>
+</section>
+</main>
+<footer><strong>AI & NATURE</strong> · A Digital Future for Biodiversity<br><span class="small" style="color:#b7c9bd">Learn • Protect • Preserve | School Project</span><br><button class="btn ghost" style="margin-top:12px" onclick="showPage('sources')">Sources & References</button></footer>
+<script>
+function showPage(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));
+ document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
+ document.querySelector('nav').classList.remove('open');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function answer(correct){
+ const f=document.getElementById('feedback');
+ f.textContent=correct?'Correct! AI can help researchers sort and identify wildlife images. 🌿':'Not quite. Try again! Think about how AI can help researchers study animals.';
+}
+</script>
+</body></html>
